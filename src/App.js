@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import axios from 'axios'
 
 class App extends React.Component {
   state = {
@@ -32,8 +33,21 @@ class App extends React.Component {
     }
   }
 
-  onSubmit = (event) => {
+  onSubmit = async (event) => {
     event.preventDefault()
+
+    try {
+      const response = await axios
+        .post(
+          'http://localhost:4000/message',
+          { text: this.state.value }
+        )
+
+      console
+        .log('response test:', response)
+    } catch (error) {
+      console.log(error)
+    }
 
     console.log('value test:', this.state.value)
   }
